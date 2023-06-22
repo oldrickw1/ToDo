@@ -7,22 +7,33 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
-    Button button_add;
-    ListView listView;
+    Button newTaskButton;
+    ListView tasksLV;
+    TasksDAO tasksDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        listView = findViewById(R.id.listView);
-        button_add = findViewById(R.id.button_addTask);
+        tasksLV = findViewById(R.id.listView);
+        newTaskButton = findViewById(R.id.button_new_task);
+        tasksDAO = new TasksDAO(this);
 
-        button_add.setOnClickListener(v -> {
+        listAllTasks();
+
+        newTaskButton.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, TaskAdder.class);
-            startActivities(intent);
+            startActivity(intent);
         });
+    }
+
+    private void listAllTasks() {
+        ArrayList<Task> tasks = new ArrayList<>();
+
     }
 }
