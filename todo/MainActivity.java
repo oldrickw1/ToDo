@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -33,7 +34,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void listAllTasks() {
-        ArrayList<Task> tasks = new ArrayList<>();
-
+        ArrayList<Task> tasks = tasksDAO.getAllTasks();
+        ArrayList<String> titles = new ArrayList<>();
+        for (Task task : tasks) {
+            titles.add(task.getTitle());
+        }
+        tasksLV.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, titles));
     }
 }
