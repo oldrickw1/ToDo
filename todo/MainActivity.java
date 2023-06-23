@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         for (Task task : tasks) {
             titles.add(task.getTitle());
         }
-        tasksLV.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, titles));
+
+        tasksLV.setAdapter(new TaskListAdapter(this, tasks));
     }
 }
